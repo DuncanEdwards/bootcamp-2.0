@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LogoImage with all props provide 1`] = `
+<img
+  alt="logo image"
+  class="my-classname"
+  src="test-extra.jpg"
+/>
+`;
+
+exports[`LogoImage without className provided 1`] = `
+<img
+  alt="logo image"
+  class="App-logo"
+  src="test-extra.jpg"
+/>
+`;

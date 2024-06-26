@@ -1,0 +1,13 @@
+.alert {
+  color: black;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.alert.info {
+  background-color: lightblue;
+}
+
+.alert.error {
+  background-color: lightcoral;
+}
