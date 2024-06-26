@@ -1,9 +1,11 @@
 import "./Alert.css";
 import classNames from "classnames";
 
+export type AlertType = "error" | "warning" | "info" | "success";
+
 type AlertProps = {
   message: string;
-  type?: "error" | "warning" | "info" | "success";
+  type?: AlertType;
 };
 
 export const Alert = ({ message, type = "info" }: AlertProps) => (

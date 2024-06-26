@@ -9,5 +9,13 @@
 }
 
 .alert.error {
-  background-color: lightcoral;
+  background-color: red;
+}
+
+.alert.warning {
+  background-color: orange;
+}
+
+.alert.success {
+  background-color: lightgreen;
 }
