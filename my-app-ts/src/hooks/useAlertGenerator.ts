@@ -1,23 +1,5 @@
 import { useEffect, useState } from "react";
-
-type AlertType = "error" | "warning" | "info" | "success";
-
-export type Alert = {
-  message: string;
-  type: AlertType;
-};
-
-const messages: { [key in AlertType]: string[] } = {
-  error: [
-    "Unterminated string literal.",
-    "A required parameter cannot follow an optional parameter.",
-    "'public' modifier must precede 'abstract' modifier.",
-    "Only ambient modules can use quoted names.",
-  ],
-  warning: [],
-  info: [],
-  success: [],
-};
+import { Alert, getRandomAlert } from "./getRandomAlert";
 
 const getRandomDelayInMS = () => {
   const SECOND_IN_MS = 1000;
@@ -32,22 +14,25 @@ const getRandomDelayInMS = () => {
   );
 };
 
-export const useAlertGenerator = () => {
+type RemoveAlert = (alertId: string) => void;
+
+export const useAlertGenerator = (): [Alert[], RemoveAlert] => {
   const [alerts, setAlerts] = useState<Alert[]>([]);
 
   useEffect(() => {
     setTimeout(
       () =>
-        setAlerts(() => [
-          ...alerts,
-          {
-            message: messages["error"][Math.floor(Math.random() * 3)],
-            type: "error",
-          },
+        setAlerts((prevAlerts) => [
+          ...prevAlerts,
+          getRandomAlert(prevAlerts.length),
         ]),
       getRandomDelayInMS()
     );
   }, [alerts]);
 
-  console.log("alerts", alerts, messages["error"]);
+  const removeAlert: RemoveAlert = (alertId: string) => {
+    setAlerts((prevAlerts) => prevAlerts.filter(({ id }) => id !== alertId));
+  };
+
+  return [alerts, removeAlert];
 };
