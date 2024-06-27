@@ -9,8 +9,9 @@ test.each<AlertType | undefined>([
   undefined,
 ])("render test %s", (alertType) => {
   const testMessage = "This is my message now";
-  render(<Alert message={testMessage} type={alertType} />);
+  const { container } = render(
+    <Alert id={1} message={testMessage} type={alertType} />
+  );
 
-  const alert = screen.getByText(testMessage);
-  expect(alert).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });
